@@ -1,0 +1,65 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#000"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textSaludo"
+            android:text="¡Hola!"
+            android:textColor="#FFFF00"
+            android:textSize="24sp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textMeta"
+            android:text="Progreso del mes:"
+            android:textColor="#FFF"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/btnRegistrar"
+            android:text="Registrar entrenamiento"
+            android:background="@drawable/boton_gradiente"
+            android:textColor="#FFF"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnFrases"
+            android:text="Frases Motivadoras"
+            android:background="@drawable/boton_gradiente"
+            android:textColor="#FFF"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnHistorial"
+            android:text="Historial"
+            android:background="@drawable/boton_gradiente"
+            android:textColor="#FFF"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnMetas"
+            android:text="Metas"
+            android:background="@drawable/boton_gradiente"
+            android:textColor="#FFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</ScrollView>
