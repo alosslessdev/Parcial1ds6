@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#111"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:text="Daily Motivation"
+        android:textSize="28sp"
+        android:textColor="#FF0000"
+        android:layout_marginBottom="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/editTextNombre"
+        android:hint="Nombre:"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/borde_blanco"
+        android:textColor="#FFF"
+        android:textColorHint="#CCC"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/btnIngresar"
+        android:text="Ingresar"
+        android:background="@drawable/boton_gradiente"
+        android:textColor="#FFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
