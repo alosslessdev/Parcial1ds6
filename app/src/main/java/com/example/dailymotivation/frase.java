@@ -17,6 +17,7 @@ public class frase extends AppCompatActivity {
             "El fracaso no es el final, es una oportunidad para aprender y crecer.",
             "La vida es un viaje, disfruta de cada momento y aprende de cada experiencia."
     };
+    //test
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
