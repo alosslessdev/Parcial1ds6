@@ -1,6 +1,10 @@
 package com.example.dailymotivation;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +13,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class pantallaPrincipal extends AppCompatActivity {
+
+    String nombre;
+    int progreso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +27,35 @@ public class pantallaPrincipal extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        this.Inicializar();
+        this.ObtenerNombre();
     }
+
+    private void Inicializar(){
+        TextView meta = (TextView)findViewById(R.id.textMeta);
+        meta.setText(progreso + "%");
+    }
+    public void ObtenerNombre(){
+        SharedPreferences verNombre = getSharedPreferences("estaLogueado", Context.MODE_PRIVATE);
+        nombre = verNombre.getString(nombre, "");
+
+    }
+
+    public void abrirEntrenamiento(){
+        startActivity(new Intent(this, registro.class));
+    }
+
+    public void abrirMetas(){
+        startActivity(new Intent(this, metas.class));
+    }
+
+    public void abrirFrases(){
+        startActivity(new Intent(this, frase.class));
+    }
+
+    public void abrirHistorial(){
+        startActivity(new Intent(this, historial.class));
+    }
+
 }
+

@@ -10,6 +10,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class frase extends AppCompatActivity {
 
+    String frases[] = {
+            "No te rindas, aún no has perdido.",
+            "El camino hacia el éxito está lleno de obstáculos, pero cada uno te hace más fuerte.",
+            "Cree en ti mismo y en todo lo que eres, pues hay algo dentro de ti que es más grande que cualquier obstáculo.",
+            "El fracaso no es el final, es una oportunidad para aprender y crecer.",
+            "La vida es un viaje, disfruta de cada momento y aprende de cada experiencia."
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,4 +29,7 @@ public class frase extends AppCompatActivity {
             return insets;
         });
     }
+
+
+
 }

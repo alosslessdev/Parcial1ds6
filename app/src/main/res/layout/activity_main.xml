@@ -32,6 +32,7 @@
 
     <Button
         android:id="@+id/btnIngresar"
+        android:onClick="Login"
         android:text="Ingresar"
         android:background="@drawable/boton_gradiente"
         android:textColor="#FFF"

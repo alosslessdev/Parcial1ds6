@@ -1,6 +1,11 @@
 package com.example.dailymotivation;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +14,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+
+    EditText nombre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +27,38 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        this.Inicializar();
+        this.LogueadoActualmente();
     }
+
+    private void Inicializar(){
+        nombre = findViewById(R.id.editTextNombre);
+    }
+
+    private void LogueadoActualmente(){
+        SharedPreferences estaLogueado = getSharedPreferences("estalogueado", Context.MODE_PRIVATE);
+        String estadoLogueado = estaLogueado.getString("logueado", "");
+        if (estadoLogueado.equals(Integer.toString(1))){
+            startActivity(new Intent(this, pantallaPrincipal.class));
+        }
+    }
+
+    public void Login(View v){
+        SharedPreferences credenciales = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
+        String nombreLista = credenciales.getString("nombre", "");
+        String nombreLocal = nombre.getText().toString();
+
+        if (nombreLocal.equals(nombreLista)){
+            SharedPreferences estaLogueado = getSharedPreferences("estaLogueado", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = estaLogueado.edit();
+            editor.putInt("logueado", 1);
+            editor.putString("nombre", nombreLista);
+            editor.apply();
+
+            startActivity(new Intent(this, pantallaPrincipal.class));
+
+        }
+
+    }
+
 }
