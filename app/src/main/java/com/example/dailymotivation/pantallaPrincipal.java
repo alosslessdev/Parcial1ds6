@@ -1,5 +1,6 @@
 package com.example.dailymotivation;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,24 +24,32 @@ public class pantallaPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pantalla_principal);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        this.Inicializar();
-        this.ObtenerNombre();
+
+        this.ObtenerNombre();     // primero obtenemos el nombre
+        this.Inicializar();       // luego lo usamos
     }
 
+    @SuppressLint("SetTextI18n")
     private void Inicializar(){
-        TextView meta = (TextView)findViewById(R.id.textMeta);
+        TextView meta = findViewById(R.id.textMeta);
         meta.setText("Progreso: " + progreso + "%");
+
+        TextView saludo = findViewById(R.id.textSaludo);
+        saludo.setText("¡Hola " + nombre + ", listo para comenzar?!");
     }
+
     public void ObtenerNombre(){
         SharedPreferences verNombre = getSharedPreferences("estaLogueado", Context.MODE_PRIVATE);
-        nombre = verNombre.getString(nombre, "");
-//test
+        nombre = verNombre.getString("nombre", "Usuario");
     }
+
+
 
     public void abrirEntrenamiento(View view){
         startActivity(new Intent(this, registro.class));

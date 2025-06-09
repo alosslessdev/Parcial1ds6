@@ -37,11 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void LogueadoActualmente(){
         SharedPreferences estaLogueado = getSharedPreferences("estaLogueado", Context.MODE_PRIVATE);
-        String estadoLogueado = estaLogueado.getString("logueado", "");
-        if (estadoLogueado.equals(Integer.toString(1))){
+        int estadoLogueado = estaLogueado.getInt("logueado", 0); // leer como int
+        if (estadoLogueado == 1){
             startActivity(new Intent(this, pantallaPrincipal.class));
         }
     }
+
 
     public void Login(View v){
         String nombreLocal = nombre.getText().toString();
