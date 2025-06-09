@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Historial"
-        android:textColor="#FFF"
+        android:textColor="#FF0000"
         android:textSize="30sp"
         android:layout_marginBottom="10dp"/>
 
