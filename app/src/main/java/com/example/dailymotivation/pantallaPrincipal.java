@@ -119,7 +119,7 @@ public class pantallaPrincipal extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void actualizarVista(){
         TextView meta = findViewById(R.id.textMeta);
-        meta.setText("Meta: " + metaActual + "\nProgreso: " + progreso + "%");
+        meta.setText("Meta: " + metaActual + "\nProgreso: " + progreso + "%, " + "Faltan: " + (100-progreso) + "%");
 
         TextView saludo = findViewById(R.id.textSaludo);
         saludo.setText("¡Hola " + nombre + ", listo para comenzar?!");
