@@ -36,14 +36,31 @@ public class pantallaPrincipal extends AppCompatActivity {
         this.Inicializar();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ObtenerDatos();
+        Inicializar();
+    }
+
+
     private void ObtenerDatos(){
         SharedPreferences verNombre = getSharedPreferences("estaLogueado", Context.MODE_PRIVATE);
         nombre = verNombre.getString("nombre", "Usuario");
 
         SharedPreferences metasPrefs = getSharedPreferences("Metas", Context.MODE_PRIVATE);
-        metaActual = metasPrefs.getString("metaActual", "No tienes metas registradas");
-        progreso = metasPrefs.getInt("progresoActual", 0);
+
+        String ultimaClave = metasPrefs.getString("ultimaMeta", null);
+        if (ultimaClave != null) {
+            metaActual = metasPrefs.getString(ultimaClave + "_texto", "No tienes metas registradas");
+            progreso = metasPrefs.getInt(ultimaClave + "_progreso", 0);
+        } else {
+            metaActual = "No tienes metas registradas";
+            progreso = 0;
+        }
     }
+
+
     @SuppressLint("SetTextI18n")
     private void Inicializar(){
         TextView meta = findViewById(R.id.textMeta);
@@ -74,9 +91,14 @@ public class pantallaPrincipal extends AppCompatActivity {
     private void guardarProgreso(){
         SharedPreferences metasPrefs = getSharedPreferences("Metas", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = metasPrefs.edit();
-        editor.putInt("progresoActual", progreso);
-        editor.apply();
+
+        String ultimaClave = metasPrefs.getString("ultimaMeta", null);
+        if (ultimaClave != null) {
+            editor.putInt(ultimaClave + "_progreso", progreso);
+            editor.apply();
+        }
     }
+
     @SuppressLint("SetTextI18n")
     private void actualizarVista(){
         TextView meta = findViewById(R.id.textMeta);

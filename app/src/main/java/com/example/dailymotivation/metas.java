@@ -53,32 +53,23 @@ public class metas extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Metas", Context.MODE_PRIVATE);
         lista = findViewById(R.id.lista);
 
-        // Retrieve all entries from SharedPreferences
-        Map<String, ?> allEntries = sharedPreferences.getAll();
         ArrayList<String> metasParaMostrar = new ArrayList<>();
 
-        // Iterate over the map and add string values to your list
-        // You might want to filter or sort these based on your needs
-        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-            if (entry.getValue() instanceof String) {
-                metasParaMostrar.add((String) entry.getValue());
+        String ordenClaves = sharedPreferences.getString("ordenMetas", "");
+        if (!ordenClaves.isEmpty()) {
+            String[] claves = ordenClaves.split(",");
+            for (String clave : claves) {
+                String texto = sharedPreferences.getString(clave + "_texto", null);
+                if (texto != null) {
+                    metasParaMostrar.add(texto);
+                }
             }
-            // If you store other types, you might want to handle them too
-            // or ensure you only store strings for this list.
         }
-
-        // Use a built-in Android layout for simple list items,
-        // or create your own custom layout for list items.
-//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
-//                this,
-//                android.R.layout.simple_list_item_1,
-//                metasParaMostrar
-//        );
-//        lista.setAdapter(arrayAdapter);
 
         MyCustomAdapter adapter = new MyCustomAdapter(this, R.layout.black_text, metasParaMostrar);
         lista.setAdapter(adapter);
     }
+
 
 
     public void GuardarMeta(View view){
@@ -86,22 +77,32 @@ public class metas extends AppCompatActivity {
         if (meta.isEmpty()) {
             Toast.makeText(this, "Ingresa una meta antes de guardar", Toast.LENGTH_SHORT).show();
             return;
+
+
         }
 
         SharedPreferences sharedPreferences = getSharedPreferences("Metas", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        String keyMeta = "meta_" + System.currentTimeMillis();
 
-        // Guardamos la meta como una entrada con timestamp para historial
-        String keyMetaHistorial = "meta_" + System.currentTimeMillis();
-        editor.putString(keyMetaHistorial, meta);
+        // Guardamos texto y progreso por separado
+        editor.putString(keyMeta + "_texto", meta);
+        editor.putInt(keyMeta + "_progreso", 0);
 
-        // Guardamos esta meta como la meta actual
-        editor.putString("metaActual", meta);
+        // Guardamos esta como la última meta agregada
+        editor.putString("ultimaMeta", keyMeta);
 
-        // Guardamos el progreso actual antes de iniciar esta meta nueva (0%)
-        editor.putInt("progresoActual", 0);
+        // Guardar orden
+        String ordenActual = sharedPreferences.getString("ordenMetas", "");
+        ordenActual = ordenActual + keyMeta + ",";
+        editor.putString("ordenMetas", ordenActual);
+
 
         editor.apply();
         Toast.makeText(this, "Meta guardada", Toast.LENGTH_SHORT).show();
+
+        // Opcional: refrescar la lista si quieres
+        Inicializar();
     }
+
 }
