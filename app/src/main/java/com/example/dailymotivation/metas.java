@@ -5,8 +5,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +16,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.dailymotivation.Adapters.MyCustomAdapter;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class metas extends AppCompatActivity {
@@ -23,6 +28,7 @@ public class metas extends AppCompatActivity {
     String metas[];
 
     private ImageButton btnGuardarMeta;
+    EditText editMeta;
 
 
     @Override
@@ -39,6 +45,7 @@ public class metas extends AppCompatActivity {
         this.Inicializar();
         btnGuardarMeta = findViewById(R.id.btnGuardarMeta);
         btnGuardarMeta.setOnClickListener(this::GuardarMeta);
+        editMeta = findViewById(R.id.editMeta);
 
     }
 
@@ -53,8 +60,8 @@ public class metas extends AppCompatActivity {
         // Iterate over the map and add string values to your list
         // You might want to filter or sort these based on your needs
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-            if (entry.getKey() instanceof String) {
-                metasParaMostrar.add((String) entry.getKey());
+            if (entry.getValue() instanceof String) {
+                metasParaMostrar.add((String) entry.getValue());
             }
             // If you store other types, you might want to handle them too
             // or ensure you only store strings for this list.
@@ -62,20 +69,26 @@ public class metas extends AppCompatActivity {
 
         // Use a built-in Android layout for simple list items,
         // or create your own custom layout for list items.
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1, // Standard Android layout for a single text item
-                metasParaMostrar
-        );
-        lista.setAdapter(arrayAdapter);
+//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
+//                this,
+//                android.R.layout.simple_list_item_1,
+//                metasParaMostrar
+//        );
+//        lista.setAdapter(arrayAdapter);
+
+        MyCustomAdapter adapter = new MyCustomAdapter(this, R.layout.black_text, metasParaMostrar);
+        lista.setAdapter(adapter);
     }
 
 
     public void GuardarMeta(View view){
+        String meta = editMeta.getText().toString();
+
     SharedPreferences sharedPreferences = getSharedPreferences("Metas", Context.MODE_PRIVATE);
     SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("meta", "correr 50km");
+        editor.putString("meta" + System.currentTimeMillis(), meta);
         editor.apply();
+        Toast.makeText(this, "Meta guardada", Toast.LENGTH_SHORT).show();
 
     }
 }
