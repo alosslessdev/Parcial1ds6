@@ -39,7 +39,7 @@ public class pantallaPrincipal extends AppCompatActivity {
     public void ObtenerNombre(){
         SharedPreferences verNombre = getSharedPreferences("estaLogueado", Context.MODE_PRIVATE);
         nombre = verNombre.getString(nombre, "");
-
+//test
     }
 
     public void abrirEntrenamiento(View view){
