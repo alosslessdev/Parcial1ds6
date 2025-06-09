@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void LogueadoActualmente(){
-        SharedPreferences estaLogueado = getSharedPreferences("estalogueado", Context.MODE_PRIVATE);
+        SharedPreferences estaLogueado = getSharedPreferences("estaLogueado", Context.MODE_PRIVATE);
         String estadoLogueado = estaLogueado.getString("logueado", "");
         if (estadoLogueado.equals(Integer.toString(1))){
             startActivity(new Intent(this, pantallaPrincipal.class));
@@ -44,21 +44,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Login(View v){
-        SharedPreferences credenciales = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
-        String nombreLista = credenciales.getString("nombre", "");
         String nombreLocal = nombre.getText().toString();
 
-        if (nombreLocal.equals(nombreLista)){
-            SharedPreferences estaLogueado = getSharedPreferences("estaLogueado", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = estaLogueado.edit();
-            editor.putInt("logueado", 1);
-            editor.putString("nombre", nombreLista);
-            editor.apply();
+        // Guarda el nombre en Credenciales (por si no está aún)
+        SharedPreferences credenciales = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorCred = credenciales.edit();
+        editorCred.putString("nombre", nombreLocal);
+        editorCred.apply();
 
-            startActivity(new Intent(this, pantallaPrincipal.class));
+        // Luego continúa con el login
+        SharedPreferences estaLogueado = getSharedPreferences("estaLogueado", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = estaLogueado.edit();
+        editor.putInt("logueado", 1);
+        editor.putString("nombre", nombreLocal);
+        editor.apply();
 
-        }
-
+        startActivity(new Intent(this, pantallaPrincipal.class));
     }
 
 }
