@@ -151,4 +151,9 @@ public class pantallaPrincipal extends AppCompatActivity {
         startActivity(new Intent(this, historial.class));
     }
 
+    public void btnVolver(View view){
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
+
 }

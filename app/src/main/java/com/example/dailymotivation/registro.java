@@ -1,6 +1,7 @@
 package com.example.dailymotivation;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -50,6 +51,10 @@ public class registro extends AppCompatActivity {
         // Asigna el botón y define su acción al hacer clic
         buttonSaveTraining = findViewById(R.id.btnGuardar);
         buttonSaveTraining.setOnClickListener(this::saveTrainingData);
+    }
+
+    public void btnVolver(View view){
+        startActivity(new Intent(this, pantallaPrincipal.class));
     }
 
     // Método que se ejecuta al presionar el botón para guardar los datos

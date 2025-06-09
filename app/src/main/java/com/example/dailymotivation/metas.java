@@ -1,6 +1,7 @@
 package com.example.dailymotivation;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -81,6 +82,11 @@ public class metas extends AppCompatActivity {
         MyCustomAdapter adapter = new MyCustomAdapter(this, R.layout.black_text, metasParaMostrar);
         lista.setAdapter(adapter); // Asigna el adaptador a la lista
     }
+
+    public void btnVolver(View view){
+        startActivity(new Intent(this, pantallaPrincipal.class));
+    }
+
 
     // Método para guardar una nueva meta
     public void GuardarMeta(View view){

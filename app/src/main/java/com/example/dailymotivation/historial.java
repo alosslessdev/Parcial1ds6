@@ -1,7 +1,9 @@
 package com.example.dailymotivation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -114,6 +116,10 @@ public class historial extends AppCompatActivity {
             Toast.makeText(this, "Error al leer el archivo: " + e.getMessage(), Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
+    }
+
+    public void btnVolver(View view){
+        startActivity(new Intent(this, pantallaPrincipal.class));
     }
 
     /*

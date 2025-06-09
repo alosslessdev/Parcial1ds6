@@ -29,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Volver"
+        android:onClick="btnVolver"
         android:layout_margin="16dp"
         android:layout_gravity="start"
         android:backgroundTint="@color/purple_500"

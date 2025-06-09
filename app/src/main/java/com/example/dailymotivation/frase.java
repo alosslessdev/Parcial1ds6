@@ -1,6 +1,7 @@
 package com.example.dailymotivation;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +51,10 @@ public class frase extends AppCompatActivity {
 
         // Establece el evento de clic al botón para mostrar la frase
         btnMotivame.setOnClickListener(this::MostrarFrase);
+    }
+
+    public void btnVolver(View view){
+        startActivity(new Intent(this, pantallaPrincipal.class));
     }
 
     // Método que muestra una frase aleatoria en un cuadro de diálogo
