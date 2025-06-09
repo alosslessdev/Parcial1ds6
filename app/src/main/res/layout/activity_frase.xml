@@ -15,15 +15,19 @@
         android:layout_marginBottom="30dp"
         android:text="Necesitas Motivacion?"
         android:textColor="#FF0000"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="256dp"
-        android:layout_marginBottom="200dp"
-        android:text="Muestra las frases motivadoras"
-        android:textColor="#FF0000"
-        android:textSize="16sp" />
+    <ImageButton
+        android:id="@+id/rengokuMotivacion"
+        android:layout_width="342dp"
+        android:layout_height="351dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="90dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/rengoku"
+        android:contentDescription="Vive con orgullo."/>
+
 
     <Button
         android:id="@+id/btnMotivame"
