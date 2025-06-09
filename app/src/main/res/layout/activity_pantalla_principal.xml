@@ -1,5 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#000"
+    android:background="#111"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -17,16 +17,17 @@
             android:id="@+id/textSaludo"
             android:text="¡Hola listo para comenzar?!"
             android:textColor="#FFFF00"
-            android:textSize="24sp"
-            android:layout_marginBottom="10dp"/>
+            android:textSize="34sp"
+            android:layout_marginBottom="50dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/textMeta"
-            android:text="Progreso del mes:"
-            android:textColor="#FFF"
-            android:layout_marginBottom="20dp"/>
+            android:textSize="20sp"
+            android:text="Progreso del meta:"
+            android:textColor="#FF0000"
+            android:layout_marginBottom="170dp"/>
 
         <Button
             android:id="@+id/btnRegistrar"
@@ -34,7 +35,7 @@
             android:text="Registrar entrenamiento"
             android:background="@drawable/boton_gradiente"
             android:textColor="#FFF"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -44,7 +45,7 @@
             android:text="Frases Motivadoras"
             android:background="@drawable/boton_gradiente"
             android:textColor="#FFF"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -54,17 +55,17 @@
             android:text="Historial"
             android:background="@drawable/boton_gradiente"
             android:textColor="#FFF"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <Button
             android:id="@+id/btnMetas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/boton_gradiente"
             android:onClick="abrirMetas"
             android:text="Metas"
-            android:background="@drawable/boton_gradiente"
-            android:textColor="#FFF"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:textColor="#FFF" />
     </LinearLayout>
 </ScrollView>

@@ -3,7 +3,6 @@
     android:background="#000"
     android:id="@+id/main"
     android:orientation="vertical"
-    android:gravity="center"
     android:padding="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,22 +11,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:text="Frase Motivadora"
-        android:textColor="#FFF"
-        android:textSize="16sp" />
-    
+        android:text="Necesitas Motivacion?"
+        android:textColor="#FF0000"
+        android:textSize="30sp"/>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_height="256dp"
+        android:layout_marginBottom="200dp"
         android:text="Muestra las frases motivadoras"
-        android:textColor="#FFF"
+        android:textColor="#FF0000"
         android:textSize="16sp" />
 
     <Button
         android:id="@+id/btnMotivame"
         android:layout_width="wrap_content"
         android:layout_height="68dp"
+        android:layout_gravity="center"
         android:background="@drawable/boton_gradiente"
         android:text="Motivame"
         android:textColor="#FFF" />
