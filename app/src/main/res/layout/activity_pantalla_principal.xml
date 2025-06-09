@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:id="@+id/textMeta"
             android:textSize="20sp"
-            android:text="Progreso del meta:"
+            android:text="Mi Meta:"
             android:textColor="#FF0000"
             android:layout_marginBottom="170dp"/>
 
