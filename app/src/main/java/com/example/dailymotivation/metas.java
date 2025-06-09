@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -21,6 +22,9 @@ public class metas extends AppCompatActivity {
     ListView lista;
     String metas[];
 
+    private ImageButton btnGuardarMeta;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,9 @@ public class metas extends AppCompatActivity {
         });
 
         this.Inicializar();
+        btnGuardarMeta = findViewById(R.id.btnGuardarMeta);
+        btnGuardarMeta.setOnClickListener(this::GuardarMeta);
+
     }
 
     private void Inicializar(){
