@@ -27,7 +27,36 @@
             android:textSize="20sp"
             android:text="Mi Meta:"
             android:textColor="#FF0000"
-            android:layout_marginBottom="170dp"/>
+            android:layout_marginBottom="20dp"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/btnRestar"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="-10%"
+                android:layout_marginEnd="90dp"
+                android:onClick="reducirProgreso"/>
+
+            <Button
+                android:id="@+id/btnSumar"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="+10%"
+                android:onClick="aumentarProgreso"/>
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/btnRegistrar"

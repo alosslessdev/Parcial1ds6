@@ -83,12 +83,25 @@ public class metas extends AppCompatActivity {
 
     public void GuardarMeta(View view){
         String meta = editMeta.getText().toString();
+        if (meta.isEmpty()) {
+            Toast.makeText(this, "Ingresa una meta antes de guardar", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-    SharedPreferences sharedPreferences = getSharedPreferences("Metas", Context.MODE_PRIVATE);
-    SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("meta" + System.currentTimeMillis(), meta);
+        SharedPreferences sharedPreferences = getSharedPreferences("Metas", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Guardamos la meta como una entrada con timestamp para historial
+        String keyMetaHistorial = "meta_" + System.currentTimeMillis();
+        editor.putString(keyMetaHistorial, meta);
+
+        // Guardamos esta meta como la meta actual
+        editor.putString("metaActual", meta);
+
+        // Guardamos el progreso actual antes de iniciar esta meta nueva (0%)
+        editor.putInt("progresoActual", 0);
+
         editor.apply();
         Toast.makeText(this, "Meta guardada", Toast.LENGTH_SHORT).show();
-
     }
 }

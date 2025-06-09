@@ -18,6 +18,7 @@ public class pantallaPrincipal extends AppCompatActivity {
 
     String nombre;
     int progreso;
+    String metaActual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +32,60 @@ public class pantallaPrincipal extends AppCompatActivity {
             return insets;
         });
 
-        this.ObtenerNombre();     // primero obtenemos el nombre
-        this.Inicializar();       // luego lo usamos
+        this.ObtenerDatos();
+        this.Inicializar();
     }
 
+    private void ObtenerDatos(){
+        SharedPreferences verNombre = getSharedPreferences("estaLogueado", Context.MODE_PRIVATE);
+        nombre = verNombre.getString("nombre", "Usuario");
+
+        SharedPreferences metasPrefs = getSharedPreferences("Metas", Context.MODE_PRIVATE);
+        metaActual = metasPrefs.getString("metaActual", "No tienes metas registradas");
+        progreso = metasPrefs.getInt("progresoActual", 0);
+    }
     @SuppressLint("SetTextI18n")
     private void Inicializar(){
         TextView meta = findViewById(R.id.textMeta);
-        meta.setText("Progreso: " + progreso + "%");
+        meta.setText("Meta: " + metaActual + "\nProgreso: " + progreso + "%");
 
         TextView saludo = findViewById(R.id.textSaludo);
         saludo.setText("¡Hola " + nombre + ", listo para comenzar?!");
     }
+
+    public void aumentarProgreso(View view){
+        if (progreso < 100){
+            progreso += 10;
+            if(progreso > 100) progreso = 100;
+            guardarProgreso();
+            actualizarVista();
+        }
+    }
+
+    public void reducirProgreso(View view){
+        if (progreso > 0){
+            progreso -= 10;
+            if(progreso < 0) progreso = 0;
+            guardarProgreso();
+            actualizarVista();
+        }
+    }
+
+    private void guardarProgreso(){
+        SharedPreferences metasPrefs = getSharedPreferences("Metas", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = metasPrefs.edit();
+        editor.putInt("progresoActual", progreso);
+        editor.apply();
+    }
+    @SuppressLint("SetTextI18n")
+    private void actualizarVista(){
+        TextView meta = findViewById(R.id.textMeta);
+        meta.setText("Meta: " + metaActual + "\nProgreso: " + progreso + "%");
+
+        TextView saludo = findViewById(R.id.textSaludo);
+        saludo.setText("¡Hola " + nombre + ", listo para comenzar?!");
+    }
+
 
     public void ObtenerNombre(){
         SharedPreferences verNombre = getSharedPreferences("estaLogueado", Context.MODE_PRIVATE);
