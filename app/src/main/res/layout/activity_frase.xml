@@ -37,4 +37,15 @@
         android:background="@drawable/boton_gradiente"
         android:text="Motivame"
         android:textColor="#FFF" />
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        android:layout_margin="16dp"
+        android:layout_gravity="start"
+        android:backgroundTint="@color/purple_500"
+        android:background="@drawable/boton_gradiente"
+        />
+
 </LinearLayout>

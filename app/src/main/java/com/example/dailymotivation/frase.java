@@ -13,9 +13,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Random;
 
+// Clase que representa la pantalla de frases motivadoras
 public class frase extends AppCompatActivity {
 
+    // Botón que al presionar muestra una frase motivadora
     Button btnMotivame;
+
+    // Arreglo de frases motivadoras que se mostrarán aleatoriamente
     String frases[] = {
             "No te rindas, aún no has perdido.",
             "El camino hacia el éxito está lleno de obstáculos, pero cada uno te hace más fuerte.",
@@ -23,33 +27,42 @@ public class frase extends AppCompatActivity {
             "El fracaso no es el final, es una oportunidad para aprender y crecer.",
             "La vida es un viaje, disfruta de cada momento y aprende de cada experiencia."
     };
-    //test
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Activa la compatibilidad con pantallas sin bordes
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_frase);
+        setContentView(R.layout.activity_frase); // Carga el diseño de la pantalla
+
+        // Ajusta los márgenes de la vista principal según las barras del sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+
+
         });
 
+        // Enlaza el botón desde el layout XML
         btnMotivame = findViewById(R.id.btnMotivame);
+
+        // Establece el evento de clic al botón para mostrar la frase
         btnMotivame.setOnClickListener(this::MostrarFrase);
     }
 
-
-    public void MostrarFrase(View view){
+    // Método que muestra una frase aleatoria en un cuadro de diálogo
+    public void MostrarFrase(View view) {
+        // Genera un número aleatorio dentro del rango de frases
         Random random = new Random();
-        int index = random.nextInt(frases.length);
+        int index = random.nextInt(frases.length); // Índice aleatorio para seleccionar frase
+
+        // Crea y muestra un cuadro de diálogo con la frase seleccionada
         new AlertDialog.Builder(this)
-                .setTitle("Frase")
-                .setMessage(frases[index])
-                .setPositiveButton("Cerrar", (dialog, which) -> dialog.dismiss())
-                .show();
+                .setTitle("Frase") // Título del diálogo
+                .setMessage(frases[index]) // Mensaje con la frase aleatoria
+                .setPositiveButton("Cerrar", (dialog, which) -> dialog.dismiss()) // Botón para cerrar
+                .show(); // Muestra el diálogo
     }
-
-
 }
