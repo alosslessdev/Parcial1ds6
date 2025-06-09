@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E6DCDC"
+    android:background="#000"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".historial">
@@ -24,9 +24,4 @@
         android:layout_height="285dp"
         android:textColor="#FFF" />
 
-    <ListView
-        android:id="@+id/listHistoria"
-        android:layout_width="match_parent"
-        android:layout_height="285dp"
-        android:textColor="#A01515" />
 </LinearLayout>
