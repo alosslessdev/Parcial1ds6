@@ -8,8 +8,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#111"
-    tools:context=".MainActivity">
+    android:background="#000"
+    tools:context="com.example.dailymotivation.MainActivity">
 
     <TextView
         android:text="Daily Motivation"
@@ -19,21 +19,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="237dp"
+        android:layout_height="193dp"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="centerInside"
+        android:src="@drawable/logo" />
+
     <EditText
         android:id="@+id/editTextNombre"
         android:hint="Nombre:"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/borde_blanco"
+        android:background="@drawable/borde_rojo"
         android:textColor="#FFF"
-        android:textColorHint="#CCC"
-        android:padding="10dp"
+        android:textColorHint="#FF0000"
+        android:padding="20dp"
         android:layout_marginBottom="20dp"/>
 
     <Button
         android:id="@+id/btnIngresar"
         android:onClick="Login"
         android:text="Ingresar"
+        android:textSize="20sp"
         android:background="@drawable/boton_gradiente"
         android:textColor="#FFF"
         android:layout_width="wrap_content"
