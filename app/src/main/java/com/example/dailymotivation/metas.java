@@ -3,6 +3,7 @@ package com.example.dailymotivation;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -32,7 +33,6 @@ public class metas extends AppCompatActivity {
         });
 
         this.Inicializar();
-        this.GuardarMeta();
     }
 
     private void Inicializar(){
@@ -46,8 +46,8 @@ public class metas extends AppCompatActivity {
         // Iterate over the map and add string values to your list
         // You might want to filter or sort these based on your needs
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-            if (entry.getValue() instanceof String) {
-                metasParaMostrar.add((String) entry.getValue());
+            if (entry.getKey() instanceof String) {
+                metasParaMostrar.add((String) entry.getKey());
             }
             // If you store other types, you might want to handle them too
             // or ensure you only store strings for this list.
@@ -64,7 +64,7 @@ public class metas extends AppCompatActivity {
     }
 
 
-    public void GuardarMeta(){
+    public void GuardarMeta(View view){
     SharedPreferences sharedPreferences = getSharedPreferences("Metas", Context.MODE_PRIVATE);
     SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("meta", "correr 50km");

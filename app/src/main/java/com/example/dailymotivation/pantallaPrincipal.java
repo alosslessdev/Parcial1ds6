@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -33,7 +34,7 @@ public class pantallaPrincipal extends AppCompatActivity {
 
     private void Inicializar(){
         TextView meta = (TextView)findViewById(R.id.textMeta);
-        meta.setText(progreso + "%");
+        meta.setText("Progreso: " + progreso + "%");
     }
     public void ObtenerNombre(){
         SharedPreferences verNombre = getSharedPreferences("estaLogueado", Context.MODE_PRIVATE);
@@ -41,19 +42,19 @@ public class pantallaPrincipal extends AppCompatActivity {
 
     }
 
-    public void abrirEntrenamiento(){
+    public void abrirEntrenamiento(View view){
         startActivity(new Intent(this, registro.class));
     }
 
-    public void abrirMetas(){
+    public void abrirMetas(View view){
         startActivity(new Intent(this, metas.class));
     }
 
-    public void abrirFrases(){
+    public void abrirFrases(View view){
         startActivity(new Intent(this, frase.class));
     }
 
-    public void abrirHistorial(){
+    public void abrirHistorial(View view){
         startActivity(new Intent(this, historial.class));
     }
 

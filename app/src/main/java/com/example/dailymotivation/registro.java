@@ -1,6 +1,9 @@
 package com.example.dailymotivation;
 
 import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
@@ -9,7 +12,9 @@ import androidx.core.graphics.Insets;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -19,6 +24,12 @@ import java.util.Locale;
 
 public class registro extends AppCompatActivity {
     private static final String FILE_NAME = "training_log.txt";
+
+    private ImageButton buttonSaveTraining;
+    private static final String CSV_HEADER = "Date,Distance (km),Time (min),Type";
+
+    private String type, distance, time;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,28 +43,31 @@ public class registro extends AppCompatActivity {
             return insets;
         });
 
-        // Test saving and reading
-        saveTrainingData("Running", "5.2", "30");
-        String logContent = readTrainingData();
-        Toast.makeText(this, "File content loaded", Toast.LENGTH_SHORT).show();
-        // Now you can use logContent as needed
+        buttonSaveTraining = findViewById(R.id.btnGuardar);
+        buttonSaveTraining.setOnClickListener(this::saveTrainingData);
     }
 
-    private void saveTrainingData(String type, String distance, String time) {
+    public void saveTrainingData(View view)  {
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        String data = String.format(
-                "Date: %s | Distance: %s km | Time: %s min | Type: %s%n",
-                date, distance, time, type
-        );
+       String csvLine = String.format("%s, %s, %s, %s", date, distance, time, type);
 
-        try (FileOutputStream fos = openFileOutput(FILE_NAME, MODE_APPEND)) {
-            fos.write(data.getBytes());
-            Toast.makeText(this, "Training saved!", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Save error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+       File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+       if (!storageDir.exists()) {
+           storageDir.mkdirs();
+       }
+
+       File csvfile = new File(storageDir, FILE_NAME);
+
+        try (FileWriter writer =new FileWriter(FILE_NAME, true)) {
+            if (getFileStreamPath(FILE_NAME).length() == 0){
+            writer.append("Date, Distance (km), Time (min), Type\n");
+        }
+            writer.append(csvLine);
+            writer.close();
+            Toast.makeText(this, "Training data saved", Toast.LENGTH_SHORT).show();
+    } catch (IOException e) {
+        Toast.makeText(this, "Error saving training data", Toast.LENGTH_SHORT).show();
+        e.printStackTrace();
         }
     }
-
-
 }
